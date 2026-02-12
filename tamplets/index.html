@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Flask MySQL App</title>
+</head>
+<body>
+    <h1>Two-Tier Flask App</h1>
+
+```
+<h3>Add Message</h3>
+<form action="/submit" method="POST">
+    <input type="text" name="new_message" placeholder="Enter message" required>
+    <button type="submit">Submit</button>
+</form>
+
+<h3>Saved Messages</h3>
+<ul>
+    {% for msg in messages %}
+        <li>{{ msg[0] }}</li>
+    {% endfor %}
+</ul>
+```
+
+</body>
+</html>
