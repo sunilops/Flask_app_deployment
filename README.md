@@ -168,10 +168,10 @@ If the build failed check the log
 docker logs <container id \ name>
 ```
 Now you can check if the app is working or not:
-
+```
 Get your EC2's pubilc ip with the port 5000:5000
 like - http://34.228.170.129:5000/
-
+```
 Now Let's move to the Jenkins setup:
 
 get the initial password:
@@ -199,8 +199,33 @@ Now Create a pipeline:
     - choose pipeline script from scm
     - provide your repo link, use the credentials
     - now build it, open console output to see what's is going on
+Make sure you have a Jenkins file in your repo
 
-
+```
+pipeline{
+    agent any
+    stages{
+        stage('Clone repo'){
+            steps{
+                git branch: 'main', url: 'https://github.com/sunilops/Flask_app_deployment.git'
+            }
+        }
+        stage('Build image'){
+            steps{
+                sh 'docker build -t flask-app .'
+            }
+        }
+        stage('Deploy with docker compose'){
+            steps{
+                // existing container if they are running
+                sh 'docker compose down || true'
+                // start app, rebuilding flask image
+                sh 'docker compose up -d --build'
+            }
+        }
+    }
+}
+```
 
 Congratulation your APP is deployed on AWS with Jenkins successfully.
 
