@@ -185,21 +185,21 @@ sudo systemctl restart jenkins
 ```
 # Now login to jenkins:
 
-## Make sure your ec2 instance configured with the security rules.
-## Now set up your Jenkins: 
-## Before anything add your GitHub cred to Jenkins.
+### Make sure your ec2 instance configured with the security rules.
+#### Now set up your Jenkins: 
+#### Before anything add your GitHub cred to Jenkins.
     * Manage Jenkins
     * Credentials
     * Add GitHub domain
     * add your credentials
-## Now Create a pipeline:
+#### Now Create a pipeline:
     * New item
     * give a name, choose pieline, next
     * In the triggers section choose GitHub hook trigger for GITScm pooling
     * choose pipeline script from scm
     * provide your repo link, use the credentials
     * now build it, open console output to see what's is going on
-## Make sure you have a Jenkins file in your repo
+### Make sure you have a Jenkins file in your repo
 
 ```
 pipeline{
